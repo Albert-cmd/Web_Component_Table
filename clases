@@ -1,0 +1,81 @@
+let headers = ['Name', 'Age', 'Country'];
+        let employees = [
+            { name: 'James', age: 21, country: 'United States' },
+            { name: 'Rony', age: 31, country: 'United Kingdom' },
+            { name: 'Peter', age: 58, country: 'Canada' },
+            { name: 'Marks', age: 20, country: 'Spain' }
+        ]
+
+        let employees = [
+            { name: 'James', age: 21, country: 'United States' },
+            { name: 'Rony', age: 31, country: 'United Kingdom' },
+            { name: 'Peter', age: 58, country: 'Canada' },
+            { name: 'Marks', age: 20, country: 'Spain' }
+        ]
+        var cotxesOOT=[
+            {nom:'r4l', marca:'Renault', model:'4L', any:1970},
+            {nom:'seat600', marca:'Seat', model:'600', any:1970}
+            ];
+
+        let headers = ['Name', 'Age', 'Country'];
+        let headersCotxes = ['Nom','Marca','Model','Any'];
+        let properties =['name','age'];
+
+        ocultaColumnes(employees,properties);
+
+        function mostrar(headers,array) {
+
+            // mostramos tabla HTML del array de objetos con el header que es un array.
+
+            let table = document.createElement('table');
+            let headerRow = document.createElement('tr');
+
+            headers.forEach(headerText => {
+                let header = document.createElement('th');
+                let textNode = document.createTextNode(headerText);
+                header.appendChild(textNode);
+                headerRow.appendChild(header);
+            });
+            table.appendChild(headerRow);
+
+            array.forEach(emp => {
+                let row = document.createElement('tr');
+                Object.values(emp).forEach(text => {
+                    let cell = document.createElement('td');
+                    let textNode = document.createTextNode(text);
+                    cell.appendChild(textNode);
+                    row.appendChild(cell);
+                })
+                table.appendChild(row);
+            })
+            return table;
+        }
+        document.body.appendChild(mostrar(headersCotxes,cotxesOOT));
+
+
+        function afegeixObjecte() {
+
+
+        }
+
+        /*let employees = [{ name: 'James', age: 21, country: 'United States' },
+            { name: 'Rony', age: 31, country: 'United Kingdom' },
+            { name: 'Peter', age: 58, country: 'Canada' },
+            { name: 'Marks', age: 20, country: 'Spain' }];*/
+
+        //let properties =['nom','marca'];
+        //ocultaColumnes(cotxesOOT,properties)
+        //ocultaColumnes(employees,properties);
+        function ocultaColumnes(arrayObjectes,propietats) {
+
+            arrayObjectes.forEach(objecte => {
+                for (let key in objecte) {
+                    for (let iterator in propietats){
+                        if (key==propietats[iterator]){
+                            objecte[key]='';
+                        }
+                    }
+                    console.log(`${key}: ${objecte[key]}`);
+                }
+            });
+        }
